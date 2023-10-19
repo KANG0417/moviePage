@@ -1,0 +1,89 @@
+/* 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 색상 */
+:root{
+  --back-ground: #21555A;
+  --title-right: #FF6060;
+  --title-dark: #3B1111;
+  --search-bar: #008080;
+  --white: #fff;
+}
+*{
+  font-family: 'SUITE-Regular';
+}
+
+/* 홈 이름 */
+#header{
+  display: flex;
+  justify-content: center;
+  padding: 6rem 0 6rem 0;
+  background-color: var(--back-ground);
+}
+#header h1{
+  font-weight: 800;
+  font-size: 8rem;
+  font-family: 'Tilt Neon', sans-serif;
+  background: linear-gradient(to left top, var(--title-dark), var(--title-right));
+  color: transparent;
+  -webkit-background-clip: text;
+  transition: all 0.3s;
+}
+
+/* 메인 */
+#main{
+  padding-top: 5rem;
+}
+
+/* 검색 부분 */
+#search-box{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  transform: translate(-50% -50%);
+}
+#search-box .search-txt{
+  display: flex;
+  background-color: var(--search-bar);
+  color: var(--white);
+  border: 0;
+  width: 0;
+  height: auto;
+  padding: 1.5rem;
+  transition: .4s;
+}
+#search-box .search-btn{
+  float: right;
+  width: 3%;
+  background-color: var(--search-bar);
+  border: 0;
+  border-radius: 50%;
+}
+#search-box .search-icon{
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+#search-box .search:hover,
+#search-box .search:focus
+{
+  width : 50rem;
+  outline: none;
+}
+#search-box .search-txt::placeholder{
+  color: var(--white);
+}
+#search-box:hover{
+  box-shadow: 0px 0px .5px 1px #51e3d4;
+  width: 20%;
+}
+#search-box:hover > .search-txt{
+  width: 20%;
+  padding: 0 1rem;
+}

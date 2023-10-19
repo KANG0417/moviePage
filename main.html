@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영화 소개 페이지</title>
+
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+  <header id="header">
+    <h1>The Movie</h1>
+  </header>
+
+  <section id="main">
+
+    <article id="input-search">
+      <form id="search-box" method="get">
+        <input type="text" placeholder="검색어를 입력해주세요." class="search-txt">
+        <button type="submit" class="search-btn">
+          <img class="search-icon" src="./icon/free-icon-font-search-3917132.svg" alt="검색 아이콘"></img>
+        </button>
+      </form>
+    </article>
+
+    <article id="card">
+      <div id="movie-card-wrap">
+        <p class="movie-title"></p>
+        <p class="movie-content"></p>
+        <p class="rating-icon"><span class="movie-rating"></span></p>
+      </div>
+    </article>
+
+  </section>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
