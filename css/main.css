@@ -1,13 +1,9 @@
 /* 폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
-@font-face {
-  font-family: 'SUITE-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+
 *{
-  font-family: 'SUITE-Regular';
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 /* 색상 */
@@ -22,7 +18,9 @@
 /* 홈 이름 */
 #header{
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 6rem 0 6rem 0;
   background-color: var(--search-bar);
 }
@@ -30,15 +28,23 @@
   font-weight: 800;
   font-size: 8rem;
   font-family: 'Tilt Neon', sans-serif;
-  /* background: linear-gradient(var(--title-dark) 0%, var(--title-right) 100%); */
   color: var(--title-right);
-  -webkit-background-clip: text;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+#header h2{
+  font-weight: 800;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  color: var(--title-dark);
   transition: all 0.3s;
 }
 
 /* 메인 */
 #main{
   padding-top: 3rem;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 /* 검색 부분 */
@@ -54,7 +60,8 @@
   transition: 0.4s;
   background-color: var(--search-bar);
 }
-#search-box:hover {
+#search-box:hover,
+#search-box:focus-within{
   width: 400px;
 }
 #search-box .search-txt{
@@ -70,7 +77,8 @@
   line-height: 1rem;
   transition: .4s;
 }
-#search-box:hover > .search-txt{
+#search-box:hover > .search-txt,
+#search-box > .search-txt:focus{
   width: 300px;
   padding: 0 1rem;
   border-radius: 50%;
@@ -94,45 +102,77 @@
   margin: 8rem;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 50rem;
+  grid-auto-rows: 45rem;
   grid-gap: 2.5rem;
 }
 #movie-card-wrap {
-  width: auto;
-  height: auto;
-  border-radius: 2rem;
+  padding: 1rem;
+  border-top: 2px solid var(--search-bar);
+  border-bottom: 2px solid var(--search-bar);
+  background-color: var(--title-dark);
+}
+#movie-card-wrap .img {
+  overflow: hidden;
+  border-radius: 1rem;
 }
 #movie-card-wrap .movie-img{
-  width: 250px;
-  height: 250px;
-  border-radius: 2rem;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: .3s;
+}
+#movie-card-wrap .img:hover .movie-img,
+#moive-card-wrap .img:focus .movie-img{ 
+  transform: scale(1.1);
 }
 #movie-card-wrap .movie-title{
   font-size: 2.5rem;
   line-height: 3rem;
   font-weight: 600;
-  color: var(--back-ground);
+  color: var(--white);
   padding: 1rem;
 }
 #movie-card-wrap .movie-content{
   font-size: 1.5rem;
   line-height: 1.8rem;
   font-weight: 600;
-  color: var(--title-dark);
+  color: var(--white);
   padding: 1rem;
-  overflow: scroll;
+  overflow: auto;
+  overflow-x: hidden;
   height: 170px;
   opacity: 0.6;
 }
-#movie-card-wrap .rating-icon{
-  
+#movie-card-wrap .movie-content::-webkit-scrollbar{
+  width: 0.6rem;
+  /* background-color: var(--title-right); */
 }
-#movie-card-wrap .movie-rating{
+#movie-card-wrap .movie-content::-webkit-scrollbar-thumb{
+  background-color: var(--title-right);
+  border-radius: 2rem;
+}
+#movie-card-wrap .movie-content::-webkit-scrollbar-track{
+  background-color: var(--white);
+}
+#movie-card-wrap .rating {
+  display: flex;
+  margin: 1rem;
+}
+#movie-card-wrap .rating .rating-icon{
+  background-image: url("../icon/free-icon-font-trophy-3915001.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+}
+#movie-card-wrap .rating .movie-rating{
   font-size: 1.5rem;
   line-height: 1.8rem;
   font-weight: 600;
-  color: var(--back-ground);
+  color: var(--white);
   padding: 1rem;
   overflow: scroll;
   height: 170px;
+  margin-left: 1.5rem;
 }

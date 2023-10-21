@@ -1,30 +1,31 @@
 // html 태그 가져오기
 const card = document.querySelector("#card");
+const searchForm = document.querySelector("#search-box");
+const searchInput = document.querySelector("#search-box .search-txt");
+const homeBtn = document.querySelector("#header h1");
 
-// API 가져오기
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MDU4YmJlOTdjYzA1Nzk4N2Q1MTAxZTEwN2QyZGFhMiIsInN1YiI6IjY1MmY3MGVjYzk5NWVlMDBlM2Y2OWMwOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.iCU00Jf2HYptUo5tLzX0aVoVrVJDze0Fqx8zQk-Dq50'
-  }
-};
-
-const imgClick = (id) => {
-  alert(`id: ${id}`);
+// 이미지를 클릭하면 알림창에 아이디값 뿌려주기
+const imgClick = (title) => {
+  console.log(typeof title);
+  // alert(`id: ${id}, 제목: ${title}`);
 }
 
-const url = "https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1";
-const getMovie = async() => {
-  fetch(url, options)
-    .then(response => {
-      return response.json();
-    })
-    .then(data =>  {
+// API 가져오기
+const API_KEY = "6058bbe97cc057987d5101e107d2daa2";
+const topRateUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko&page=1`;
+const searchUrl = "https://api.themoviedb.org/3/search/movie?include_adult=false&language=ko-KR&page=1";
+
+// 영화 조회 함수 생성
+const getMovie = (url) => {
+  fetch(url)
+  .then(response => {
+    console.log("데이터먼저test");
+    return response.json();
+  })
+  .then(data =>  {
+    console.log("그다음데이터test");
       const movies = data.results;
-      const imgUrl = "https://image.tmdb.org/t/p/w500";
       movies.forEach(item => {
-        // console.log(item);
         const {
           title,
           overview,
@@ -32,23 +33,57 @@ const getMovie = async() => {
           backdrop_path,
           id,
         } = item;
-
-        let img = imgUrl + backdrop_path;
+        
+        let imgUrl = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
+        let noImg = "./img/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg";
         let cardHtml = `
         <div id="movie-card-wrap">
-          <img src=${img} alt="영화 이미지" onclick="imgClick(${id})" class="movie-img"></img>
+          <div class="img">
+            <img src="${backdrop_path !== null ? imgUrl : noImg}" alt="영화 이미지"
+            onclick="imgClick(${id})" class="movie-img"></img>
+          </div>
           <p class="movie-title">${title}</p>
           <p class="movie-content">${overview}</p>
-          <p class="rating-icon"><span class="movie-rating">${vote_average}</span></p>
+          <div class="rating">
+            <p class="rating-icon"><span class="movie-rating">${ Math.ceil(vote_average * 10) / 10}</span></p>
+            </div>
         </div>
         `;
-
+        
         if (overview !== "") {
           card.insertAdjacentHTML("beforeend", cardHtml);
         }
       });
     })
     .catch(err => console.error(err));
-  }
+}
+
+// 전체 목록 조회
+getMovie(topRateUrl);
+
+homeBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  card.innerHTML = "";
+  getMovie(topRateUrl);
+});
   
-  getMovie();
+// 버튼을 클릭하거나 엔터를 치면 검색 기능
+searchForm.addEventListener("submit", async(e) => {
+  e.preventDefault();
+
+  const inputVal = e.target.children[0].value.toLowerCase();
+  const queryUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${inputVal}&include_adult=false&language=ko-KR&page=1`;
+
+  if (inputVal.trim() === "") {
+    alert("검색어를 입력해주세요!")
+    return false;
+  }
+  if (queryUrl.includes(inputVal)) {
+    console.log("일치합니다!");
+    // 영화 목록 초기화
+    card.innerHTML = "";
+    // 검색 목록 조회
+    getMovie(queryUrl);
+  }
+});
