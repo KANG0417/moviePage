@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>영화 소개 페이지</title>
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
   <link rel="stylesheet" type="text/css" href="./css/reset.css">
   <link rel="stylesheet" type="text/css" href="./css/main.css">
@@ -33,10 +33,17 @@
 
     <article>
       <div id="pagination">
-        <button class="beginning-btn"></button>
-        <button class="prev-btn"><i class="fa-regular fa-less-than"></i></button>
-        <button class="next-btn"></button>
-        <button class="final-btn"></button>
+        <button class="beginning-btn"><i class="fa-solid fa-angles-left"></i></button>
+        <button class="prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <ui class="page-num">
+          <li class="page-num-btn">1</li>
+          <li class="page-num-btn">2</li>
+          <li class="page-num-btn">3</li>
+          <li class="page-num-btn">4</li>
+          <li class="page-num-btn">5</li>
+        </ui>
+        <button class="next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="final-btn"><i class="fa-solid fa-angles-right"></i></button>
       </div>
     </article>
   </section>
