@@ -141,7 +141,7 @@
   padding: 1rem;
   overflow: auto;
   overflow-x: hidden;
-  height: 170px;
+  height: 150px;
   opacity: 0.6;
 }
 #movie-card-wrap .movie-content::-webkit-scrollbar{

@@ -6,7 +6,8 @@ const homeBtn = document.querySelector("#header h1");
 
 // 이미지를 클릭하면 알림창에 아이디값 뿌려주기
 const imgClick = (title) => {
-  console.log(typeof title);
+  console.log(`${title}`);
+  // console.log(`${title}`);
   // alert(`id: ${id}, 제목: ${title}`);
 }
 
@@ -16,18 +17,16 @@ const topRateUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY
 
 // 영화 조회 함수 생성
 const getMovie = (url) => {
-  console.log(url);
   fetch(url)
   .then(response => {
-    console.log("데이터먼저test");
     return response.json();
   })
   .then(data =>  {
-    console.log("그다음데이터test");
-      const movies = data.results;
-      movies.forEach(item => {
-        const {
-          title,
+    const movies = data.results;
+    const totalPages = data.total_pages;
+    movies.forEach(item => {
+      const {
+        title,
           overview,
           vote_average,
           backdrop_path,
@@ -40,7 +39,7 @@ const getMovie = (url) => {
         <div id="movie-card-wrap">
           <div class="img">
             <img src="${backdrop_path !== null ? imgUrl : noImg}" alt="영화 이미지"
-            onclick="imgClick(${id})" class="movie-img"></img>
+            onclick="imgClick(${title})" class="movie-img"></img>
           </div>
           <p class="movie-title">${title}</p>
           <p class="movie-content">${overview}</p>
@@ -55,8 +54,6 @@ const getMovie = (url) => {
         }
       });
 
-      const total_pages = data.total_pages;
-      console.log(total_pages);
     })
     .catch(err => console.error(err));
 }
@@ -88,7 +85,13 @@ searchForm.addEventListener("submit", async(e) => {
     card.innerHTML = "";
     // 검색 목록 조회
     getMovie(queryUrl);
+    pagination(queryUrl);
   }
 });
 
 // 페이지네이션
+const pagination = (url) => {
+  let pageUrl = url + 1
+  console.log(pageUrl);
+
+}
