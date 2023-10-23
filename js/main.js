@@ -75,7 +75,7 @@ homeBtn.addEventListener("click", (e) => {
 searchForm.addEventListener("submit", async(e) => {
   e.preventDefault();
 
-  const inputVal = e.target.children[0].value.toLowerCase();
+  const inputVal = document.querySelector("#search-box .search-txt").value.toLowerCase();
   const queryUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${inputVal}&include_adult=false&language=ko-KR&page=1`;
 
   if (inputVal.trim() === "") {
