@@ -12,7 +12,7 @@ const imgClick = (title) => {
 
 // API 가져오기
 const API_KEY = "6058bbe97cc057987d5101e107d2daa2";
-const topRateUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko&page=37`;
+const topRateUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko&page=1`;
 
 // 영화 조회 함수 생성
 const getMovie = (url) => {
@@ -76,7 +76,7 @@ searchForm.addEventListener("submit", async(e) => {
   e.preventDefault();
 
   const inputVal = e.target.children[0].value.toLowerCase();
-  const queryUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${inputVal}&include_adult=false&language=ko-KR&page=37`;
+  const queryUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${inputVal}&include_adult=false&language=ko-KR&page=1`;
 
   if (inputVal.trim() === "") {
     alert("검색어를 입력해주세요!")
