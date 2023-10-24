@@ -5,10 +5,8 @@ const searchInput = document.querySelector("#search-box .search-txt");
 const homeBtn = document.querySelector("#header h1");
 
 // 이미지를 클릭하면 알림창에 아이디값 뿌려주기
-const imgClick = (title) => {
-  console.log(`${title}`);
-  // console.log(`${title}`);
-  // alert(`id: ${id}, 제목: ${title}`);
+const imgClick = (title, id) => {
+  alert(`(영화 id) ${id}, (영화 제목) ${title}`);
 }
 
 // API 가져오기
@@ -23,12 +21,11 @@ const getMovie = (url) => {
   })
   .then(data =>  {
     const movies = data.results;
-    const totalPages = data.total_pages;
     movies.forEach(item => {
       const {
         title,
-          overview,
-          vote_average,
+        overview,
+        vote_average,
           backdrop_path,
           id,
         } = item;
@@ -39,12 +36,12 @@ const getMovie = (url) => {
         <div id="movie-card-wrap">
           <div class="img">
             <img src="${backdrop_path !== null ? imgUrl : noImg}" alt="영화 이미지"
-            onclick="imgClick(${title})" class="movie-img"></img>
+            onclick="imgClick('${title}', ${id})" class="movie-img"></img>
           </div>
           <p class="movie-title">${title}</p>
           <p class="movie-content">${overview}</p>
           <div class="rating">
-            <p class="rating-icon"><span class="movie-rating">${ Math.ceil(vote_average * 10) / 10}</span></p>
+            <p class="rating-icon"><span class="movie-rating">${Math.ceil(vote_average * 10) / 10}</span></p>
             </div>
         </div>
         `;
@@ -85,13 +82,5 @@ searchForm.addEventListener("submit", async(e) => {
     card.innerHTML = "";
     // 검색 목록 조회
     getMovie(queryUrl);
-    pagination(queryUrl);
   }
 });
-
-// 페이지네이션
-const pagination = (url) => {
-  let pageUrl = url + 1
-  console.log(pageUrl);
-
-}
