@@ -22,7 +22,6 @@ const getMovie = (url) => {
   .then(data =>  {
     console.log("데이터: ", data);
     const movies = data.results;
-    const totalPages = data.total_pages;
     movies.forEach(item => {
       const {
         title,
@@ -84,8 +83,7 @@ searchForm.addEventListener("submit", async(e) => {
     card.innerHTML = "";
     // 검색 목록 조회
     getMovie(queryUrl);
-    pagination(queryUrl);
-  }
+  }D
 });
 
 // 페이지네이션
