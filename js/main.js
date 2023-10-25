@@ -6,7 +6,8 @@ const homeBtn = document.querySelector("#header h1");
 
 // 이미지를 클릭하면 알림창에 아이디값 뿌려주기
 const imgClick = (title, id) => {
-  alert(`(영화 id) ${id}, (영화 제목) ${title}`);
+  alert(`(영화 id) ${id}
+(영화 제목) ${title}`);
 }
 
 // API 가져오기
