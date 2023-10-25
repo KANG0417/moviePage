@@ -6,6 +6,11 @@
   font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
+body{
+  height: auto;
+  margin-bottom: 5rem;
+}
+
 /* 색상 */
 :root{
   --back-ground: #21555A;
@@ -178,3 +183,36 @@
 }
 
 /* 페이지네이션 */
+#pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--search-bar);
+  height: 50px;
+  color: var(--white);
+}
+#pagination .page-num{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+#pagination .page-num li{
+  cursor: pointer;
+  text-align: center;
+  margin: 0 3rem 0 0.5rem;
+  width: 40px;
+  border-radius: 50%;
+}
+#pagination .page-num li:hover{
+  width: 40px;
+  background-color: var(--title-right);
+  border-radius: 50%;
+  transition: .5s ease-in;
+}
+#pagination .fa-solid{
+  color: var(--white);
+  font-size: 2rem;
+  letter-spacing: 2rem;
+}
